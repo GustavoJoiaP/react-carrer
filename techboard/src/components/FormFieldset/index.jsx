@@ -1,0 +1,10 @@
+import './form-fieldset.style.css'
+
+export function FormFieldset({children})
+{
+  return (
+    <fieldset className='form-fieldset'>
+      {children}
+    </fieldset>
+  )
+}
