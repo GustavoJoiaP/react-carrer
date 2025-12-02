@@ -6,9 +6,22 @@ import './event-form.style.css'
 import { Button } from "../Button";
 import { DropDownList } from "../DropDownList";
 
-export function EventForm(){
+export function EventForm({themes, toSubmit}) {
+  function SubmitFormEvent(formData){
+    
+    const event = {
+      name: formData.get('name'),
+      cover: formData.get('cover'),
+      date: formData.get('dataEvento'),
+      theme: themes.find(function (item){
+        return item.id == formData.get('theme')
+      })
+    }
+    toSubmit(event);
+  }
+
   return (
-    <form className="event-form">
+    <form className="event-form" action={SubmitFormEvent}>
       <FormTitle >
         Preencha para criar um evento:
       </FormTitle>
@@ -17,23 +30,29 @@ export function EventForm(){
           <FormLabel htmlFor='name'>
             Qual o nome do evento?
           </FormLabel>
-          <FormTextInput type="text" id='name' placeholder="Nome do evento" />
+          <FormTextInput type="text" id='name' name='name' placeholder="Nome do evento" />
+        </FormFieldset>
+        <FormFieldset>
+          <FormLabel htmlFor='cover'>
+            Qual o nome do evento?
+          </FormLabel>
+          <FormTextInput type="text" id='cover' name='cover' placeholder="https://...." />
         </FormFieldset>
         <FormFieldset>
           <FormLabel htmlFor='dataEvento'>
             Data do evento
           </FormLabel>
-          <FormTextInput type="date" id='dataEvento' />
+          <FormTextInput type="date" id='dataEvento' name='dataEvento'/>
         </FormFieldset>
         <FormFieldset>
           <FormLabel >
-            Data do evento
+            Tema do evento
           </FormLabel>
-          <DropDownList  />
+          <DropDownList id="theme" name="theme" itens={themes} />
         </FormFieldset>
       </div>
       <div className="actions">
-        <Button type="submit">
+        <Button >
           Criar evento
         </Button>
       </div>

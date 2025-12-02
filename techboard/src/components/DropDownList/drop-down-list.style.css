@@ -2,9 +2,20 @@
   border-radius: 8px;
   background-color: transparent;
   border: 1px solid #4a4949;
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 16px;
   line-height: 125%;
   color: #FFFFFF;
   padding: 8px 16px;
+  appearance: none;
+}
+
+.drop-down-list option {
+  background-color: #06151a;
+  color: #ffffff;
+}
+
+.drop-down-list:focus {
+  outline: none;
+  border-color: #17E489;
 }
