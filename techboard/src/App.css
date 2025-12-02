@@ -8,12 +8,3 @@ header {
 body {
   margin: 0;
 }
-
-section {
-  background: linear-gradient(180deg, #17E489 0%, #091024 100%);
-  display: flex;
-  justify-content: center;
-}
-section img {
-  max-width: 90%;
-}
