@@ -26,9 +26,10 @@ function App() {
       description: 'Learn the basics of React.js in this introductory course.' 
     },
   ]);
+  console.log('events fora => ', events);
 
   function addEvent(event) {
-    setEvents(prev => [...prev, event]);   // ✅ forma correta e imutável
+    setEvents(prev => [...prev, event]);
     console.log('events => ', events);
   }
 
@@ -45,9 +46,9 @@ function App() {
         <section key={item.themeId}>
           <ThemeSection theme={item} />
           {events.map(event => {
-            
-          }
-          <EventCard event={events[0]} />
+            <EventCard event={event} />
+          })}
+          
         </section>
       ))}
       
