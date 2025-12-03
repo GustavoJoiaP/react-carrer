@@ -22,16 +22,19 @@ function App() {
       cover: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png', 
       theme: themes[0], 
       date: new Date(), 
-      title: 'React Basics', 
+      name: 'React Basics', 
       description: 'Learn the basics of React.js in this introductory course.' 
     },
   ]);
-  console.log('events fora => ', events);
 
   function addEvent(event) {
-    setEvents(prev => [...prev, event]);
-    console.log('events => ', events);
+    console.log(event);
+    setEvents([...events, event]);
   }
+
+  const themesWithEvents = themes.filter(theme =>
+    events.some(event => event.theme.themeId === theme.themeId)
+  );
 
   return (
    <main> 
@@ -42,15 +45,21 @@ function App() {
       <EventForm
        themes={themes} 
        toSubmit={addEvent} />
-      {themes.map(item => (
-        <section key={item.themeId}>
-          <ThemeSection theme={item} />
-          {events.map(event => {
-            <EventCard event={event} />
-          })}
-          
-        </section>
-      ))}
+       <section className='container'>
+        {themesWithEvents.map(theme => (
+          <section key={theme.themeId}>
+            <ThemeSection theme={theme} />
+            <div className='events'>
+              {events
+                .filter(event => event.theme.themeId === theme.themeId)
+                .map((event, index) => (
+                  <EventCard key={index} event={event} />
+                ))}
+            </div>
+          </section>
+        ))}
+       </section>
+      
       
    </main>
   )

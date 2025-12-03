@@ -11,10 +11,11 @@ export function EventForm({themes, toSubmit}) {
     
     const event = {
       name: formData.get('name'),
+      description: formData.get('description'),
       cover: formData.get('cover'),
-      date: formData.get('dataEvento'),
+      date: new Date(formData.get('dataEvento')),
       theme: themes.find(function (item){
-        return item.id == formData.get('theme')
+        return item.themeId == formData.get('theme')
       })
     }
     toSubmit(event);
@@ -33,6 +34,12 @@ export function EventForm({themes, toSubmit}) {
           <FormTextInput type="text" id='name' name='name' placeholder="Nome do evento" />
         </FormFieldset>
         <FormFieldset>
+          <FormLabel htmlFor='description'>
+            Qual a descrição do evento?
+          </FormLabel>
+          <FormTextInput type="text" id='description' name='description' placeholder="Descripção do evento" />
+        </FormFieldset>
+        <FormFieldset>
           <FormLabel htmlFor='cover'>
             Qual o nome do evento?
           </FormLabel>
@@ -48,7 +55,7 @@ export function EventForm({themes, toSubmit}) {
           <FormLabel >
             Tema do evento
           </FormLabel>
-          <DropDownList id="theme" name="theme" itens={themes} />
+          <DropDownList id="theme" itens={themes} />
         </FormFieldset>
       </div>
       <div className="actions">
