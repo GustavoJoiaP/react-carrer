@@ -75,7 +75,7 @@ function App() {
             })}
           </ToDoList>
           <Footer>
-            <FabButton>
+            <FabButton onClick={() => console.log('alternar modal')}>
               <IconPlus />
             </FabButton>
           </Footer>
